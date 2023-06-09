@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Issue Tracker 🛠️</title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <div id="container">
+      <header class="flex">
+        <div id="header-heading">
+          <a href="/">
+            <h3>Issue Tracker</h3>
+          </a>
+        </div>
+        <button id="create-project-btn" class="primary-btn">
+          Create New Project
+        </button>
+      </header>
+
+      <main>
+        <div id="projects-display" class="flex">
+          <%- include('_projectPageProjectTile') %>
+        </div>
+
+        <div id="issues-header" class="flex">
+          <%- include('_issuesHeader') %>
+        </div>
+
+        <div id="issues-display" class="flex">
+          <% const reversedIssues = [...project.issues].reverse() %> <% for
+          (issue of reversedIssues) { %> <%- include('_issue') %> <% } %>
+        </div>
+
+        <div class="modal-container" id="modal-container-issue">
+          <%- include('_newIssueModal') %>
+        </div>
+
+        <div class="modal-container" id="modal-container">
+          <%- include('_newProjectModal') %>
+        </div>
+
+        <div id="issues-data" data="<%=JSON.stringify(project.issues)%>"></div>
+
+        <div class="modal-container" id="modal-container-authors">
+          <%- include('_filterByAuthorsModal') %>
+        </div>
+
+        <div class="modal-container" id="modal-container-filter-label">
+          <%- include('_filterByLabelsModal') %>
+        </div>
+      </main>
+
+      <%- include('_footer') %>
+      <script src="/js/home.js"></script>
+      <script src="/js/projectPage.js"></script>
+    </div>
+  </body>
+</html>
